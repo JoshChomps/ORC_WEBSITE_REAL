@@ -81,6 +81,12 @@
   height: 40%;
 }
       
+#CS1 .image-frame {
+  height: 400px;
+  width: 550px;
+  margin-top: 60px;
+}
+
 @media (max-width: 600px) {
   .content-flex {
     flex-direction: column;
@@ -124,4 +130,9 @@
   SP_button {
     width:80%
   }
+  #CS1 .image-frame {
+  height: 200px;
+  width: 300px;
+  margin-top: -10px;
+}
 }
