@@ -78,8 +78,9 @@ body {
 }
 
 .banner-logo {
-  width: 400px;
+  width: 350px;
   object-fit: contain;
+  margin-right: 50px;
   filter: drop-shadow(2px 2px 4px rgba(0, 0, 0, 0.5));
   filter:  drop-shadow(-3px 0px 0px #ffd800) drop-shadow(0px 3px 0px #ffd800) drop-shadow(0px -3px 0px #ffd800) drop-shadow(0.5px 2.5px 0px #ffd800) drop-shadow(-4.5px 2.5px 0px #ffd800) drop-shadow(0.5px -2.5px 0px #ffd800) drop-shadow(-4.5px -2.5px 0px #ffd800) drop-shadow(-5px 0px 0px #006E7D) drop-shadow(0px 3px 0px #006E7D) drop-shadow(0px -3px 0px #006E7D) drop-shadow(-5px 3px 0px #006E7D) drop-shadow(-5px -3px 0px #006E7D) drop-shadow(0px 0px 30px rgba(0, 0, 0, 0.2));
 }
@@ -511,6 +512,7 @@ body > .content_text {
     width: 60%;
     height: auto;
     margin-bottom: -40px;
+
     filter: none !important
   }
 
