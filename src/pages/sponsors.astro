@@ -1,0 +1,64 @@
+---
+import Layout from '../layouts/Layout.astro';
+import ContactForm from '../components/ContactForm.astro';
+import '../styles/sponsers.css';
+import { Image } from 'astro:assets';
+import groupPhoto from '../assets/images/IMG_1259.jpg';
+import altarImg from '../assets/Sponsors/altar.png';
+import polymakerImg from '../assets/Sponsors/polymaker.png';
+import stepperonlineImg from '../assets/Sponsors/stepperonline.jpg';
+---
+
+<Layout>
+    <section class="content_section" id="CS1" style="height:45%">
+        <div class="content">
+            <h2>Sponsors don’t just help us build rovers,<br> they build future professionals. </h2>
+            <p class="content_text">
+                Through contributions of materials, expertise, and financial support, our sponsors help students gain experience in design, engineering, business, and science. Financial and material contributions go directly to prototyping, designing, manufacturing, testing, and travel, allowing Okanagan Rover Craft to build a competitive rover for a world-class competition.
+                We are incredibly grateful to our current sponsors who have already invested in the future of STEM professionals. Your contributions make an incredible difference and are truly appreciated.
+            </p>
+            <div class="image-frame">
+                <Image src={groupPhoto} alt="Group Photo" />
+            </div>
+        </div>
+    </section>
+
+    <div id="sponser-cont" style="padding-top:20px;padding-bottom:40px;">
+        <h2>Our Sponsors</h2>
+        <p>Thank you for supporting our team!</p>
+        <div class="sponser-items">
+            <div class="sponser-display">
+                <div class="sponser-img"><Image src={altarImg} alt="Altar Metal Fab Co." /></div>
+                <p>Altar Metal Fab Co.</p>
+            </div>
+            <div class="sponser-display">
+                <div class="sponser-img"><Image src={polymakerImg} alt="Polymaker" /></div>
+                <p>Polymaker</p>
+            </div>
+            <div class="sponser-display">
+                <div class="sponser-img"><Image src={stepperonlineImg} alt="Stepper Online" /></div>
+                <p>Stepper Online</p>
+            </div>
+        </div>
+    </div>
+
+    <section class="content_section" id="CS2">
+        <div class="content" style="margin-top: -60px;">
+            <h2>How to get involved</h2>
+            <div class="content-flex" style="display: flex; gap: 30px; align-items: flex-start; ">
+                <p class="content_text">
+                    Looking to get involved in the future of Okanagan Rover Craft? We are always looking for passionate collaborators to join our mission. If you represent an organization looking to empower a team of young professionals, our outreach team would be thrilled to discuss the benefits of partnering with Okanagan Rover Craft with you! Sponsoring our team provides your organization with brand visibility while directly supporting our team's goals. A partnership with Okanagan Rover Craft allows you to connect with top student talent in STEM fields and support both our craft, and our team's future. If you are interested in supporting us, get involved today by filling out our contact form or emailing us at outreach@okanaganrovercraft.ca.
+                </p>
+                <div class="pdf-button-container" style="margin-top:-80px">
+                    <embed id="sponsorship-pdf" src="/documents/ORC SPONSORSHIP PACKAGE 2026 - 4 (compressed V3).pdf" type="application/pdf"/>
+                    <a href="/documents/ORC SPONSORSHIP PACKAGE 2026 - 4 (compressed V3).pdf" download class="SP_button">
+                        &nbsp;Download Our Sponsorship Package Here
+                        <span class="arrow">→</span>
+                    </a>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <ContactForm />
+</Layout>

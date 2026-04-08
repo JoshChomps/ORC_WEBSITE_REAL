@@ -1,0 +1,62 @@
+---
+---
+<header class="top-bar">
+  <div class="top-bar_container">
+    <div class="logo">
+      <a href="/">
+        <img src="/logo.svg" alt="Logo" style="width: 100px; height: 50px; object-fit:cover; padding:0px; margin:0px">
+      </a>
+    </div>
+
+    <a href="javascript:void(0);" class="hamburger-icon">
+      <span></span>
+      <span></span>
+      <span></span>
+    </a>
+
+    <nav class="navigation" id="navMenu">
+      <ul>
+        <li><a href="/">Home</a></li>
+        <li><a href="/about">About</a></li>
+        <li><a href="/404">Gallery</a></li>
+        <li><a href="/404">Projects</a></li>
+        <li><a href="/members">Members</a></li>
+        <li><a href="/404">Donate</a></li>
+        <li><a href="/sponsors">Sponsors</a></li>
+      </ul>
+    </nav>
+  </div>
+</header>
+
+<script>
+  function setupMenu() {
+    const hamburger = document.querySelector('.hamburger-icon');
+    const navMenu = document.getElementById('navMenu');
+
+    if (hamburger && navMenu) {
+      hamburger.addEventListener('click', () => {
+        hamburger.classList.toggle('active');
+        navMenu.classList.toggle('active');
+      });
+    }
+
+    document.addEventListener('click', (e) => {
+      if (hamburger && navMenu && !hamburger.contains(e.target as Node) && !navMenu.contains(e.target as Node)) {
+        hamburger.classList.remove('active');
+        navMenu.classList.remove('active');
+      }
+    });
+
+    const navLinks = document.querySelectorAll('.navigation a');
+    navLinks.forEach((link) => {
+      link.addEventListener('click', () => {
+        if(hamburger && navMenu) {
+            hamburger.classList.remove('active');
+            navMenu.classList.remove('active');
+        }
+      });
+    });
+  }
+
+  document.addEventListener('DOMContentLoaded', setupMenu);
+</script>

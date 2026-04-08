@@ -1,0 +1,15 @@
+{
+  "name": "orc-website",
+  "version": "1.0.0",
+  "description": "Astro migration of ORC-Website",
+  "scripts": {
+    "dev": "astro dev",
+    "start": "astro dev",
+    "build": "astro build",
+    "preview": "astro preview",
+    "astro": "astro"
+  },
+  "dependencies": {
+    "astro": "^4.0.0"
+  }
+}
