@@ -1,10 +1,11 @@
 ---
+const baseUrl = "/ORC_WEBSITE_REAL";
 ---
 <header class="top-bar">
   <div class="top-bar_container">
     <div class="logo">
-      <a href="/">
-        <img src="/logo.svg" alt="Logo" style="width: 100px; height: 50px; object-fit:cover; padding:0px; margin:0px">
+      <a href={`${baseUrl}/`}>
+        <img src={`${baseUrl}/logo.svg`} alt="Logo" style="width: 100px; height: 50px; object-fit:cover; padding:0px; margin:0px">
       </a>
     </div>
 
@@ -16,13 +17,13 @@
 
     <nav class="navigation" id="navMenu">
       <ul>
-        <li><a href="/">Home</a></li>
-        <li><a href="/about">About</a></li>
-        <li><a href="/404">Gallery</a></li>
-        <li><a href="/404">Projects</a></li>
-        <li><a href="/members">Members</a></li>
-        <li><a href="/404">Donate</a></li>
-        <li><a href="/sponsors">Sponsors</a></li>
+        <li><a href={`${baseUrl}/`}>Home</a></li>
+        <li><a href={`${baseUrl}/about`}>About</a></li>
+        <li><a href={`${baseUrl}/404`}>Gallery</a></li>
+        <li><a href={`${baseUrl}/404`}>Projects</a></li>
+        <li><a href={`${baseUrl}/members`}>Members</a></li>
+        <li><a href={`${baseUrl}/404`}>Donate</a></li>
+        <li><a href={`${baseUrl}/sponsors`}>Sponsors</a></li>
       </ul>
     </nav>
   </div>

@@ -1,7 +1,6 @@
 ---
 import Layout from '../layouts/Layout.astro';
-import { Image } from 'astro:assets';
-import groupPhoto from '../assets/images/IMG_1324.jpg';
+const baseUrl = "/ORC_WEBSITE_REAL";
 ---
 
 <Layout>
@@ -18,7 +17,7 @@ import groupPhoto from '../assets/images/IMG_1324.jpg';
               Okanagan Rovercraft team!
           </p>
           <div class="image-frame">
-              <Image src={groupPhoto} alt="Group Photo" />
+              <img src={`${baseUrl}/assets/images/IMG_1324.jpg`} alt="Group Photo" loading="lazy" decoding="async" class="expandable-image" />
           </div>
       </div>
   </section>
@@ -34,10 +33,16 @@ import groupPhoto from '../assets/images/IMG_1324.jpg';
               top student talent in STEM fields and support both our craft, and our team's future. If you are
               interested in supporting us, check out our sponsorship page!
           </p>
-          <button class="learn-more" id="sponsor_button" onclick="window.location.href='/sponsors'">
+          <button class="learn-more" id="sponsor_button">
               Learn More
               <span class="arrow">→</span>
           </button>
       </div>
   </section>
 </Layout>
+
+<script define:vars={{ baseUrl }}>
+  document.getElementById('sponsor_button')?.addEventListener('click', () => {
+      window.location.href = `${baseUrl}/sponsors`;
+  });
+</script>

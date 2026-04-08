@@ -1,17 +1,14 @@
 ---
 import Layout from '../layouts/Layout.astro';
-import { Image } from 'astro:assets';
-import bannerImg from '../assets/images/ORC - Landscape Banner.png';
-import gearLogo from '../assets/images/gear-logo.png';
-import groupPhoto from '../assets/images/group_photo.jpg';
+const baseUrl = "/ORC_WEBSITE_REAL";
 ---
 
 <Layout>
   <section class="banner">
-      <Image src={bannerImg} alt="ORC Landscape Banner" class="banner-img" />
+      <img src={`${baseUrl}/assets/images/ORC - Landscape Banner.png`} alt="ORC Landscape Banner" class="banner-img" fetchpriority="high" decoding="async" />
       <div class="banner-overlay">
-          <Image src={gearLogo} alt="Logo" class="banner-logo" style="height:fit-content" />
-          <h1 class="banner-title">Okanagan Rovercraft</h1>
+          <img src={`${baseUrl}/assets/images/gear-logo.webp`} alt="Logo" class="banner-logo" style="height:fit-content" decoding="async" />
+          <h1 class="banner-title">Okanagan<br/>Rover<br/>Craft</h1>
       </div>
   </section>
 
@@ -26,13 +23,21 @@ import groupPhoto from '../assets/images/group_photo.jpg';
           <p class="content_text">
               Okanagan Rover Craft aims to foster an environment of continued learning in the robotics and mechatronics industry by building a rover to compete at the Canadian International Rover Challenge (CIRC)! We are a design-oriented student association at the University of British Columbia Okanagan, who design, build, and pilot mars-style rovers. Our organization seeks to provide a practical and fun experience to our members as we hone our skills as engineers and young professionals. Welcome to our website!
           </p>
-          <button class="learn-more" onclick="window.location.href='/about'">
+          <button class="learn-more" id="learn-more-btn">
               Learn More
               <span class="arrow">→</span>
           </button>
           <div class="image-frame">
-              <Image src={groupPhoto} alt="Group Photo" />
+              <img src={`${baseUrl}/assets/images/IMG_1324.jpg`} alt="Group Photo" loading="lazy" decoding="async" class="expandable-image" />
           </div>
       </div>
   </section>
 </Layout>
+
+<script define:vars={{ baseUrl }}>
+  const learnMoreBtn = document.getElementById('learn-more-btn');
+
+  learnMoreBtn?.addEventListener('click', () => {
+      window.location.href = `${baseUrl}/about`;
+  });
+</script>

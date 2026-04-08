@@ -1,11 +1,22 @@
 ---
 import Layout from '../layouts/Layout.astro';
 import '../styles/members.css';
+const baseUrl = "/ORC_WEBSITE_REAL";
 ---
 
 <Layout>
-  <div style="min-height: 60vh;">
-    <h1 style="text-align:center; font-family:'Monomaniac One', sans-serif; margin-top:100px;">Members Page</h1>
-    <h3 style="text-align:center; font-family:'Gothic A1', sans-serif;">Coming Soon</h3>
-  </div>
+    <div class="members-container">
+        <h1 class="members-title">Our Team Members</h1>
+        <p class="members-subtitle">The dedicated professionals behind Okanagan Rover Craft.</p>
+        
+        <div class="members-grid">
+            <!-- Members will be added here -->
+            <div class="member-card">
+                <div class="member-info">
+                   <h2 style="font-family: 'Monomaniac One', sans-serif;">Coming Soon</h2>
+                   <p>Project leads and team members will be updated shortly.</p>
+                </div>
+            </div>
+        </div>
+    </div>
 </Layout>

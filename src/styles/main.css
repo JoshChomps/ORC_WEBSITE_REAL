@@ -4,6 +4,11 @@ body {
   color: #272727;
 }
 
+h1, h2, h3, h4, h5, h6 {
+  font-family: "Monomaniac One", sans-serif;
+  margin: 0;
+}
+
 /* A lot of this is terrible and needs refactoring */
 
 .landing-page {
@@ -81,18 +86,28 @@ body {
   width: 350px;
   object-fit: contain;
   margin-right: 50px;
-  filter: drop-shadow(2px 2px 4px rgba(0, 0, 0, 0.5));
-  filter:  drop-shadow(-3px 0px 0px #ffd800) drop-shadow(0px 3px 0px #ffd800) drop-shadow(0px -3px 0px #ffd800) drop-shadow(0.5px 2.5px 0px #ffd800) drop-shadow(-4.5px 2.5px 0px #ffd800) drop-shadow(0.5px -2.5px 0px #ffd800) drop-shadow(-4.5px -2.5px 0px #ffd800) drop-shadow(-5px 0px 0px #006E7D) drop-shadow(0px 3px 0px #006E7D) drop-shadow(0px -3px 0px #006E7D) drop-shadow(-5px 3px 0px #006E7D) drop-shadow(-5px -3px 0px #006E7D) drop-shadow(0px 0px 30px rgba(0, 0, 0, 0.2));
+  /* Optimized: Using 4 strategic shadows instead of 13 for performance */
+  filter: drop-shadow(0 0 4px rgba(0, 0, 0, 0.5)) 
+          drop-shadow(-3px -3px 0 #ffd800) 
+          drop-shadow(3px 3px 0 #ffd800)
+          drop-shadow(-5px 3px 0 #006E7D);
 }
 
 .banner-title {
-  font-family: "Monomaniac One", sans-serif;
   font-size: 96px;
   color: white;
-  margin: 0;
-  text-shadow: 2px 2px 4px rgba(0, 0, 0, 0.5);
+  line-height: 1;
+  text-align: left;
+  /* Optimized: Using text-shadow instead of filter: drop-shadow for significantly better performance */
+  text-shadow: 
+    -3px -3px 0 #ffd800,  
+     3px -3px 0 #ffd800,
+    -3px  3px 0 #ffd800,
+     3px  3px 0 #ffd800,
+    -5px -5px 0 #006E7D,
+     5px  5px 0 #006E7D,
+     2px  2px 10px rgba(0, 0, 0, 0.5);
   -webkit-text-stroke: 0.5px black;
-  filter: drop-shadow(-2px 0px 0px #ffd800) drop-shadow(0px 2px 0px #ffd800) drop-shadow(0px -2px 0px #ffd800) drop-shadow(0.5px 2px 0px #ffd800) drop-shadow(-3px 2.5px 0px #ffd800) drop-shadow(0.5px -2px 0px #ffd800) drop-shadow(-3px -2px 0px #ffd800) drop-shadow(-4px 0px 0px #006E7D) drop-shadow(0px 2px 0px #006E7D) drop-shadow(0px -2px 0px #006E7D) drop-shadow(-4px 2px 0px #006E7D) drop-shadow(-4px -2px 0px #006E7D) drop-shadow(0px 0px 30px rgba(0, 0, 0, 0.2));
 }
 
 .content_section {
@@ -112,12 +127,10 @@ body {
 }
 
 .content_section .content_title {
-  font-family: "Monomaniac One", sans-serif;
   font-size: 96px;
   margin: 0 0 20px;
 }
 h2 {
-  font-family: "Monomaniac One", sans-serif;
   font-size: 48px;
   margin: 0 0 20px;
 }
@@ -203,7 +216,6 @@ body > .content_text {
   color: #2b2b2b;
   font-size: 96px;
   margin-bottom: 80px;
-  font-family: "Monomaniac One", sans-serif;
 }
 
 .card {
@@ -635,3 +647,14 @@ body > .content_text {
   }
 
 }
+/* Expandable Image Styles */
+.expandable-image {
+    cursor: zoom-in;
+    transition: transform 0.3s ease, box-shadow 0.3s ease !important;
+}
+
+.expandable-image:hover {
+    transform: scale(1.02);
+    box-shadow: 0 10px 30px rgba(0, 0, 0, 0.2) !important;
+}
+

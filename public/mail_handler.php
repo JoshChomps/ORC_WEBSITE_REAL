@@ -4,7 +4,7 @@
 
 <?php 
 if(isset($_POST['submit'])){
-    $to = "sammoore359@gmail.com"; // this is your Email address
+    $to = "outreach@okanaganrovercraft.ca"; // this is your Email address
     $from = filter_input(INPUT_POST, 'email', FILTER_SANITIZE_EMAIL);
     $first_name = filter_input(INPUT_POST, 'first_name', FILTER_SANITIZE_SPECIAL_CHARS);
     $last_name = filter_input(INPUT_POST, 'last_name', FILTER_SANITIZE_SPECIAL_CHARS);

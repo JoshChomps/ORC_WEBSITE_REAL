@@ -1,10 +1,13 @@
 ---
 import Layout from '../layouts/Layout.astro';
+const baseUrl = "/ORC_WEBSITE_REAL";
 ---
 
 <Layout>
-  <div style="display:flex; flex-direction:column; align-items:center; justify-content:center; margin-top:100px; height:60vh;">
-      <h2 style="font-family: 'Monomaniac One', sans-serif; font-size: 48px; text-align:center">Our website is under construction</h2>
-      <h3 style="text-align:center; font-family: 'Gothic A1', sans-serif;">Please check back soon</h3>
-  </div>
+    <div style="text-align: center; padding: 100px 20px;">
+        <h1 style="font-size: 80px; color: #ffd800; font-family: 'Monomaniac One', sans-serif;">404</h1>
+        <h2 style="font-family: 'Monomaniac One', sans-serif;">Oops! This page is currently under construction.</h2>
+        <p style="font-family: 'Gothic A1', sans-serif; margin-bottom: 40px;">We're working hard to bring you more content soon.</p>
+        <a href={`${baseUrl}/`} style="padding: 15px 30px; background: #00606b; color: white; text-decoration: none; border-radius: 40px; font-weight: bold;">Return Home</a>
+    </div>
 </Layout>

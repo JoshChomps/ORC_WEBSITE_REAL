@@ -1,0 +1,149 @@
+/* Improved PDF Viewer Styles */
+.pdf-viewer-container {
+    display: flex;
+    flex-direction: column;
+    gap: 20px;
+    align-items: center;
+    margin-right: -300px;
+}
+
+.pdf-viewer-frame {
+    position: relative;
+    width: 600px;
+    height: 400px;
+    background: #f0f0f0;
+    border-radius: 12px;
+    overflow: hidden;
+    box-shadow: 0 10px 30px rgba(0, 0, 0, 0.1);
+    border: 1px solid rgba(0, 0, 0, 0.05);
+}
+
+#sponsorship-pdf {
+    width: 100%;
+    height: 100%;
+    border: none;
+}
+
+.pdf-overlay {
+    position: absolute;
+    bottom: 0;
+    left: 0;
+    width: 100%;
+    height: 60px;
+    background: linear-gradient(to top, rgba(0, 0, 0, 0.7), transparent);
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    opacity: 0;
+    transition: opacity 0.3s ease;
+    pointer-events: none;
+}
+
+.pdf-viewer-frame:hover .pdf-overlay {
+    opacity: 1;
+    pointer-events: auto;
+}
+
+.expand-button {
+    background: white;
+    color: #248db4;
+    padding: 10px 24px;
+    border-radius: 40px;
+    font-size: 16px;
+    font-weight: 600;
+    cursor: pointer;
+    border: none;
+    display: flex;
+    align-items: center;
+    gap: 10px;
+    box-shadow: 0 4px 14px rgba(0, 0, 0, 0.2);
+    transition: all 0.3s ease;
+}
+
+.expand-button:hover {
+    transform: scale(1.05);
+    background-color: #f8f8f8;
+}
+
+.expand-icon {
+    font-size: 18px;
+}
+
+/* Integrated PDF Modal */
+.pdf-modal {
+    display: none;
+    position: fixed;
+    top: 0;
+    left: 0;
+    width: 100%;
+    height: 100%;
+    background-color: rgba(0, 0, 0, 0.85);
+    backdrop-filter: blur(8px);
+    z-index: 10001;
+    justify-content: center;
+    align-items: center;
+    opacity: 0;
+    transition: opacity 0.3s ease;
+}
+
+.pdf-modal.active {
+    display: flex;
+    opacity: 1;
+}
+
+.pdf-modal-container {
+    width: 90%;
+    height: 90%;
+    background: #525659; /* Standard PDF viewer background */
+    border-radius: 12px;
+    position: relative;
+    box-shadow: 0 0 50px rgba(0, 0, 0, 0.5);
+    overflow: hidden;
+}
+
+.pdf-modal-container iframe {
+    width: 100%;
+    height: 100%;
+    border: none;
+}
+
+.pdf-modal-close {
+    position: absolute;
+    top: 15px;
+    right: 25px;
+    background: rgba(255, 255, 255, 0.2);
+    border: none;
+    color: white;
+    font-size: 40px;
+    width: 50px;
+    height: 50px;
+    border-radius: 50%;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    cursor: pointer;
+    z-index: 10002;
+    transition: all 0.2s ease;
+}
+
+.pdf-modal-close:hover {
+    background: rgba(255, 255, 255, 0.4);
+    transform: scale(1.1);
+}
+
+@media (max-width: 1200px) {
+    .pdf-viewer-container {
+        margin-right: 0;
+    }
+}
+
+@media (max-width: 768px) {
+    .pdf-viewer-frame {
+        width: 100%;
+        height: 300px;
+    }
+    .pdf-modal-container {
+        width: 95%;
+        height: 85%;
+    }
+}
