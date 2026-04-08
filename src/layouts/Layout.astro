@@ -16,6 +16,17 @@ const baseUrl = "/ORC_WEBSITE_REAL";
     <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
     <link rel="preload" href={`${baseUrl}/assets/images/ORC - Landscape Banner.webp`} as="image" type="image/webp" fetchpriority="high" />
     <link href="https://fonts.googleapis.com/css2?family=Gothic+A1:wght@400;500;600&family=Monomaniac+One&display=swap" rel="stylesheet" />
+    <base href={`${baseUrl}/`} />
+    <script is:inline>
+        // Redirect logic for GitHub Pages sub-folders if needed
+        (function() {
+            var path = window.location.pathname;
+            if (path.endsWith('.php')) return; // Don't redirect PHP scripts
+            if (!path.endsWith('/') && !path.includes('.')) {
+                window.history.replaceState(null, '', path + '/');
+            }
+        })();
+    </script>
 </head>
 <body>
     <div class="landing-page">
