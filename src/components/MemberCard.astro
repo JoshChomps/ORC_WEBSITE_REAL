@@ -1,0 +1,278 @@
+---
+interface Props {
+  name: string;
+  role: string;
+  image?: string;
+  linkedin?: string;
+  subteam: string;
+  bio?: string;
+}
+
+const { name, role, image, linkedin, subteam, bio = "Dedicated member of the Okanagan Rovercraft team, pushing the boundaries of planetary exploration." } = Astro.props;
+const placeholderImg = "https://via.placeholder.com/300x300?text=Profile";
+---
+
+<div class="member-card-wrapper" data-subteam={subteam}>
+    <div class="member-card">
+        <div class="member-image-container">
+            <img src={image || placeholderImg} alt={name} class="member-image" />
+            <div class="member-ring"></div>
+        </div>
+        <div class="member-info">
+            <h3 class="member-name">{name}</h3>
+            <span class="member-role">{role}</span>
+        </div>
+        
+        <div class="member-details">
+            <p class="member-bio">{bio}</p>
+            <div class="member-links">
+                {linkedin && (
+                    <a href={linkedin} target="_blank" rel="noopener noreferrer" class="member-social">
+                        LinkedIn Profile
+                    </a>
+                )}
+            </div>
+            <button class="close-details" aria-label="Close details">&times;</button>
+        </div>
+        
+        <button class="expand-prompt">View Profile</button>
+    </div>
+</div>
+
+<style>
+    .member-card-wrapper {
+        perspective: 1000px;
+        height: 100%;
+    }
+
+    .member-card {
+        background: rgba(255, 255, 255, 0.05);
+        backdrop-filter: blur(15px);
+        border: 1px solid rgba(255, 255, 255, 0.1);
+        border-radius: 24px;
+        padding: 40px 30px;
+        text-align: center;
+        transition: all 0.6s cubic-bezier(0.23, 1, 0.32, 1);
+        position: relative;
+        overflow: hidden;
+        display: flex;
+        flex-direction: column;
+        align-items: center;
+        gap: 24px;
+        height: 100%;
+        cursor: pointer;
+    }
+
+    .member-card:hover {
+        transform: translateY(-10px);
+        background: rgba(255, 255, 255, 0.08);
+        border-color: var(--teal-accent);
+        box-shadow: 0 30px 60px rgba(0, 0, 0, 0.5);
+    }
+
+    .member-card.expanded {
+        padding-top: 60px;
+        background: rgba(0, 41, 47, 0.95);
+        border-color: var(--rings-dark);
+        cursor: default;
+    }
+
+    .member-image-container {
+        position: relative;
+        width: 140px;
+        height: 140px;
+        border-radius: 50%;
+        padding: 5px;
+        transition: all 0.6s ease;
+    }
+
+    .member-card.expanded .member-image-container {
+        width: 100px;
+        height: 100px;
+        transform: translateY(-10px);
+    }
+
+    .member-image {
+        width: 100%;
+        height: 100%;
+        border-radius: 50%;
+        object-fit: cover;
+        z-index: 2;
+        position: relative;
+        background: var(--mountain-mg);
+    }
+
+    .member-ring {
+        position: absolute;
+        top: 0;
+        left: 0;
+        right: 0;
+        bottom: 0;
+        border: 3px solid var(--rings-dark);
+        border-radius: 50%;
+        z-index: 1;
+        transition: all 0.4s ease;
+    }
+
+    .member-card:hover .member-ring {
+        border-color: var(--teal-accent);
+        transform: scale(1.05);
+    }
+
+    .member-card.expanded .member-ring {
+        border-color: var(--rings-dark);
+        transform: scale(1.1);
+    }
+
+    .member-info {
+        display: flex;
+        flex-direction: column;
+        gap: 8px;
+        transition: all 0.4s ease;
+    }
+
+    .member-card.expanded .member-info {
+        transform: translateY(-10px);
+    }
+
+    .member-name {
+        color: var(--white);
+        font-size: 28px;
+        margin: 0;
+        font-family: 'Monomaniac One', sans-serif;
+    }
+
+    .member-role {
+        color: var(--teal-accent);
+        font-size: 14px;
+        font-weight: 600;
+        text-transform: uppercase;
+        letter-spacing: 2px;
+    }
+
+    .member-details {
+        max-height: 0;
+        opacity: 0;
+        overflow: hidden;
+        transition: all 0.6s cubic-bezier(0.23, 1, 0.32, 1);
+        display: flex;
+        flex-direction: column;
+        gap: 20px;
+        width: 100%;
+        margin-top: -10px;
+    }
+
+    .member-card.expanded .member-details {
+        max-height: 500px;
+        opacity: 1;
+        padding-bottom: 20px;
+        margin-top: 10px;
+    }
+
+    .member-bio {
+        color: rgba(255, 255, 255, 0.8);
+        font-size: 15px;
+        line-height: 1.6;
+        padding: 0 10px;
+    }
+
+    .member-links {
+        display: flex;
+        justify-content: center;
+        gap: 15px;
+    }
+
+    .member-social {
+        padding: 8px 20px;
+        background: rgba(77, 218, 211, 0.1);
+        border: 1px solid var(--teal-accent);
+        color: var(--teal-accent);
+        border-radius: 40px;
+        text-decoration: none;
+        font-size: 13px;
+        font-weight: 600;
+        transition: all 0.3s ease;
+    }
+
+    .member-social:hover {
+        background: var(--teal-accent);
+        color: var(--mountain-bg);
+    }
+
+    .expand-prompt {
+        padding: 10px 25px;
+        background: transparent;
+        border: 1px solid rgba(255, 255, 255, 0.2);
+        color: var(--white);
+        border-radius: 40px;
+        font-size: 13px;
+        cursor: pointer;
+        transition: all 0.3s ease;
+        margin-top: auto;
+    }
+
+    .member-card:hover .expand-prompt {
+        border-color: var(--teal-accent);
+        color: var(--teal-accent);
+    }
+
+    .member-card.expanded .expand-prompt {
+        display: none;
+    }
+
+    .close-details {
+        position: absolute;
+        top: 20px;
+        right: 20px;
+        background: transparent;
+        border: none;
+        color: var(--white);
+        font-size: 30px;
+        cursor: pointer;
+        opacity: 0;
+        transition: all 0.4s ease;
+        display: none;
+    }
+
+    .member-card.expanded .close-details {
+        display: block;
+        opacity: 0.6;
+    }
+
+    .close-details:hover {
+        opacity: 1;
+        transform: rotate(90deg);
+    }
+</style>
+
+<script>
+    function initMemberCards() {
+        const cards = document.querySelectorAll('.member-card');
+        
+        cards.forEach(card => {
+            card.addEventListener('click', (e) => {
+                const isCloseBtn = (e.target as HTMLElement).classList.contains('close-details');
+                const isLink = (e.target as HTMLElement).tagName === 'A';
+                
+                if (isLink) return;
+
+                if (isCloseBtn) {
+                    card.classList.remove('expanded');
+                    return;
+                }
+
+                if (!card.classList.contains('expanded')) {
+                    // Close other expanded cards first (optional but cleaner)
+                    document.querySelectorAll('.member-card.expanded').forEach(other => {
+                        if (other !== card) other.classList.remove('expanded');
+                    });
+                    card.classList.add('expanded');
+                }
+            });
+        });
+    }
+
+    // Run on initial load and after Astro swaps (if using view transitions)
+    initMemberCards();
+    document.addEventListener('astro:after-swap', initMemberCards);
+</script>

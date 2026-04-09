@@ -1,11 +1,12 @@
 ---
-const baseUrl = "/ORC_WEBSITE_REAL";
+const rawBase = import.meta.env.BASE_URL;
+const cleanBase = rawBase.endsWith('/') ? rawBase.slice(0, -1) : rawBase;
 ---
 <header class="top-bar">
   <div class="top-bar_container">
     <div class="logo">
-      <a href={`${baseUrl}/`}>
-        <img src={`${baseUrl}/logo.svg`} alt="Logo" style="width: 100px; height: 50px; object-fit:cover; padding:0px; margin:0px">
+      <a href={`${cleanBase}/`}>
+        <img src={`${cleanBase}/logo.svg`} alt="Logo" style="width: 100px; height: 50px; object-fit:cover; padding:0px; margin:0px">
       </a>
     </div>
 
@@ -17,13 +18,13 @@ const baseUrl = "/ORC_WEBSITE_REAL";
 
     <nav class="navigation" id="navMenu">
       <ul>
-        <li><a href={`${baseUrl}/`}>Home</a></li>
-        <li><a href={`${baseUrl}/about`}>About</a></li>
-        <li><a href={`${baseUrl}/404`}>Gallery</a></li>
-        <li><a href={`${baseUrl}/404`}>Projects</a></li>
-        <li><a href={`${baseUrl}/members`}>Members</a></li>
-        <li><a href={`${baseUrl}/404`}>Donate</a></li>
-        <li><a href={`${baseUrl}/sponsors`}>Sponsors</a></li>
+        <li><a href={`${cleanBase}/`}>Home</a></li>
+        <li><a href={`${cleanBase}/about/`}>About</a></li>
+        <li><a href={`${cleanBase}/gallery/`}>Gallery</a></li>
+        <li><a href={`${cleanBase}/404/`}>Projects</a></li>
+        <li><a href={`${cleanBase}/members/`}>Members</a></li>
+        <li><a href={`${cleanBase}/404/`}>Donate</a></li>
+        <li><a href={`${cleanBase}/sponsors/`}>Sponsors</a></li>
       </ul>
     </nav>
   </div>

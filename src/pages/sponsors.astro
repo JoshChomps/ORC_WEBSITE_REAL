@@ -1,15 +1,16 @@
 ---
 import Layout from '../layouts/Layout.astro';
 import ContactForm from '../components/ContactForm.astro';
-import '../styles/sponsers.css';
+import '../styles/sponsors.css';
 import '../styles/pdf-viewer.css';
-const baseUrl = "/ORC_WEBSITE_REAL";
+const rawBase = import.meta.env.BASE_URL;
+const baseUrl = rawBase.endsWith('/') ? rawBase.slice(0, -1) : rawBase;
 ---
 
 <Layout>
     <section class="content_section" id="CS1" style="height:45%">
         <div class="content">
-            <h2>Sponsors don’t just help us build rovers,<br> they build future professionals. </h2>
+            <h2 style="max-width: 650px;">Sponsors don’t just help us build rovers, they build future professionals. </h2>
             <p class="content_text">
                 Through contributions of materials, expertise, and financial support, our sponsors help students gain experience in design, engineering, business, and science. Financial and material contributions go directly to prototyping, designing, manufacturing, testing, and travel, allowing Okanagan Rover Craft to build a competitive rover for a world-class competition.
                 We are incredibly grateful to our current sponsors who have already invested in the future of STEM professionals. Your contributions make an incredible difference and are truly appreciated.
@@ -20,33 +21,35 @@ const baseUrl = "/ORC_WEBSITE_REAL";
         </div>
     </section>
 
-    <div id="sponser-cont" style="padding-top:20px;padding-bottom:40px;">
-        <h2>Our Sponsors</h2>
-        <p>Thank you for supporting our team!</p>
-        <div class="sponser-items">
-            <div class="sponser-display">
-                <div class="sponser-img"><img src={`${baseUrl}/assets/sponsors/altar.webp`} alt="Altar Metal Fab Co." loading="lazy" decoding="async" /></div>
-                <p>Altar Metal Fab Co.</p>
-            </div>
-            <div class="sponser-display">
-                <div class="sponser-img"><img src={`${baseUrl}/assets/sponsors/polymaker.webp`} alt="Polymaker" loading="lazy" decoding="async" /></div>
-                <p>Polymaker</p>
-            </div>
-            <div class="sponser-display">
-                <div class="sponser-img"><img src={`${baseUrl}/assets/sponsors/stepperonline.webp`} alt="Stepper Online" loading="lazy" decoding="async" /></div>
-                <p>Stepper Online</p>
+    <section class="content_section" id="SponsorGrid" style="background-color: white; color: black; padding: 80px 0;">
+        <div id="sponser-cont">
+            <h2 style="color: var(--mountain-bg); font-size: 42px;">Our Sponsors</h2>
+            <p style="font-size: 18px; margin-bottom: 40px; opacity: 0.8;">Thank you for supporting our team!</p>
+            <div class="sponser-items">
+                <div class="sponser-display">
+                    <div class="sponser-img"><img src={`${baseUrl}/assets/sponsors/altar.webp`} alt="Altar Metal Fab Co." loading="lazy" decoding="async" /></div>
+                    <p>Altar Metal Fab Co.</p>
+                </div>
+                <div class="sponser-display">
+                    <div class="sponser-img"><img src={`${baseUrl}/assets/sponsors/polymaker.webp`} alt="Polymaker" loading="lazy" decoding="async" /></div>
+                    <p>Polymaker</p>
+                </div>
+                <div class="sponser-display">
+                    <div class="sponser-img"><img src={`${baseUrl}/assets/sponsors/stepperonline.webp`} alt="Stepper Online" loading="lazy" decoding="async" /></div>
+                    <p>Stepper Online</p>
+                </div>
             </div>
         </div>
-    </div>
+    </section>
 
-    <section class="content_section" id="CS2">
+    <section class="content_section" id="CS2" style="background-color: var(--mountain-bg); color: white;">
         <div class="content" style="margin-top: -60px;">
             <h2>How to get involved</h2>
-            <div class="content-flex" style="display: flex; gap: 30px; align-items: flex-start; ">
-                <p class="content_text">
+            <div class="content-flex" style="display: flex; gap: 40px; align-items: flex-start; flex-wrap: wrap;">
+                <p class="content_text" style="flex: 1; min-width: 300px;">
                     Looking to get involved in the future of Okanagan Rover Craft? We are always looking for passionate collaborators to join our mission. If you represent an organization looking to empower a team of young professionals, our outreach team would be thrilled to discuss the benefits of partnering with Okanagan Rover Craft with you! Sponsoring our team provides your organization with brand visibility while directly supporting our team's goals. A partnership with Okanagan Rover Craft allows you to connect with top student talent in STEM fields and support both our craft, and our team's future. If you are interested in supporting us, get involved today by filling out our contact form or emailing us at outreach@okanaganrovercraft.ca.
                 </p>
-                <div class="pdf-viewer-container" style="margin-top:-80px">
+                <div class="pdf-viewer-container" style="flex: 1; min-width: 300px; margin-top: 20px;">
                     <div class="pdf-viewer-frame">
                         <iframe id="sponsorship-pdf" src={`${baseUrl}/documents/ORC SPONSORSHIP PACKAGE 2026 - 4 (compressed V3).pdf#toolbar=0`} title="ORC Sponsorship Package Preview"></iframe>
                         <div class="pdf-overlay">
@@ -56,7 +59,7 @@ const baseUrl = "/ORC_WEBSITE_REAL";
                         </div>
                     </div>
                     <a href={`${baseUrl}/documents/ORC SPONSORSHIP PACKAGE 2026 - 4 (compressed V3).pdf`} download class="SP_button">
-                        &nbsp;Download Our Sponsorship Package Here
+                        Download Sponsorship Package
                         <span class="arrow">→</span>
                     </a>
                 </div>
@@ -76,7 +79,7 @@ const baseUrl = "/ORC_WEBSITE_REAL";
         const expandBtn = document.getElementById('expand-pdf-btn');
         const expandedIframe = document.getElementById('expanded-pdf');
         const closeBtn = document.querySelector('.pdf-modal-close');
-        const originalSrc = "/ORC_WEBSITE_REAL/documents/ORC SPONSORSHIP PACKAGE 2026 - 4 (compressed V3).pdf";
+        const originalSrc = `${import.meta.env.BASE_URL}documents/ORC SPONSORSHIP PACKAGE 2026 - 4 (compressed V3).pdf`;
 
         const openModal = () => {
             if (modal && expandedIframe) {
@@ -115,5 +118,8 @@ const baseUrl = "/ORC_WEBSITE_REAL";
             }
         });
     </script>
-    <ContactForm />
+    
+    <section class="content_section" style="background-color: white; padding: 40px 0 120px;">
+        <ContactForm />
+    </section>
 </Layout>

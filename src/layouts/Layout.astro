@@ -3,20 +3,26 @@ import '../styles/main.css';
 import Header from '../components/Header.astro';
 import Footer from '../components/Footer.astro';
 import ImageLightbox from '../components/ImageLightbox.astro';
-const baseUrl = "/ORC_WEBSITE_REAL";
+
+interface Props {
+  title?: string;
+}
+
+const { title = "Okanagan Rovercraft" } = Astro.props;
+const rawBase = import.meta.env.BASE_URL;
+const cleanBase = rawBase.endsWith('/') ? rawBase.slice(0, -1) : rawBase;
 ---
 <!DOCTYPE html>
 <html lang="en">
 <head>
     <meta charset="UTF-8" />
     <meta name="viewport" content="width=device-width, initial-scale=1.0" />
-    <link rel="icon" type="image/svg+xml" href={`${baseUrl}/logo.svg`} />
-    <title>Okanagan Rovercraft</title>
+    <link rel="icon" type="image/svg+xml" href={`${cleanBase}/logo.svg`} />
+    <title>{title}</title>
     <link rel="preconnect" href="https://fonts.googleapis.com">
     <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
-    <link rel="preload" href={`${baseUrl}/assets/images/ORC - Landscape Banner.webp`} as="image" type="image/webp" fetchpriority="high" />
+    <link rel="preload" href={`${cleanBase}/assets/images/ORC - Landscape Banner.webp`} as="image" type="image/webp" fetchpriority="high" />
     <link href="https://fonts.googleapis.com/css2?family=Gothic+A1:wght@400;500;600&family=Monomaniac+One&display=swap" rel="stylesheet" />
-    <base href={`${baseUrl}/`} />
     <script is:inline>
         // Redirect logic for GitHub Pages sub-folders if needed
         (function() {

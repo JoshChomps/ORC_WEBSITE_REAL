@@ -15,7 +15,7 @@
         left: 0;
         width: 100%;
         height: 100%;
-        background-color: rgba(0, 0, 0, 0.9);
+        background-color: rgba(0, 41, 47, 0.95);
         backdrop-filter: blur(12px);
         z-index: 9999;
         justify-content: center;
@@ -59,7 +59,9 @@
     .lightbox-content.zoomed img {
         transform: scale(2.5);
         cursor: zoom-out;
-        transition: transform 0.3s ease, transform-origin 0s;
+        transition: transform 0.3s ease;
+        transform-origin: center;
+        touch-action: none;
     }
 
     .lightbox-close {
@@ -87,10 +89,10 @@
     }
 </style>
 
-<script lang="ts">
+<script is:inline>
     function setupLightbox() {
         const overlay = document.getElementById('lightbox-overlay');
-        const lightboxImg = document.getElementById('lightbox-img') as HTMLImageElement;
+        const lightboxImg = document.getElementById('lightbox-img');
         const content = document.getElementById('lightbox-content');
         const closeBtn = document.querySelector('.lightbox-close');
         
@@ -98,35 +100,7 @@
 
         let isZoomed = false;
 
-        // Open lightbox
-        document.addEventListener('click', (e) => {
-            const target = e.target as HTMLElement;
-            if (target.tagName === 'IMG' && target.classList.contains('expandable-image')) {
-                const img = target as HTMLImageElement;
-                lightboxImg.src = img.src;
-                lightboxImg.alt = img.alt;
-                overlay.style.display = 'flex';
-                overlay.offsetHeight;
-                overlay.classList.add('active');
-                document.body.style.overflow = 'hidden';
-            }
-        });
-
-        // Toggle Zoom
-        lightboxImg.addEventListener('click', (e) => {
-            e.stopPropagation();
-            isZoomed = !isZoomed;
-            if (isZoomed) {
-                content.classList.add('zoomed');
-                updatePan(e);
-            } else {
-                content.classList.remove('zoomed');
-                lightboxImg.style.transformOrigin = 'center';
-            }
-        });
-
-        // Pan Logic
-        const updatePan = (e: MouseEvent | PointerEvent) => {
+        const updatePan = (e) => {
             if (!isZoomed) return;
             const rect = content.getBoundingClientRect();
             const x = ((e.clientX - rect.left) / rect.width) * 100;
@@ -134,11 +108,6 @@
             lightboxImg.style.transformOrigin = `${x}% ${y}%`;
         };
 
-        content.addEventListener('mousemove', (e) => {
-            if (isZoomed) updatePan(e);
-        });
-
-        // Close lightbox
         const closeLightbox = () => {
             isZoomed = false;
             content.classList.remove('zoomed');
@@ -151,18 +120,49 @@
             }, 300);
         };
 
+        // Delegated listener for all images with expandable-image class
+        document.addEventListener('click', (e) => {
+            const target = e.target;
+            if (target && target.tagName === 'IMG' && target.classList.contains('expandable-image')) {
+                const img = target;
+                lightboxImg.src = img.src;
+                lightboxImg.alt = img.alt;
+                overlay.style.display = 'flex';
+                // Trigger reflow
+                void overlay.offsetWidth;
+                overlay.classList.add('active');
+                document.body.style.overflow = 'hidden';
+            }
+        });
+
+        lightboxImg.addEventListener('click', (e) => {
+            e.stopPropagation();
+            isZoomed = !isZoomed;
+            if (isZoomed) {
+                content.classList.add('zoomed');
+                updatePan(e);
+            } else {
+                content.classList.remove('zoomed');
+                lightboxImg.style.transformOrigin = 'center';
+            }
+        });
+
+        content.addEventListener('pointermove', (e) => {
+            if (isZoomed) updatePan(e);
+        }, { passive: true });
+
         overlay.addEventListener('click', (e) => {
             if (e.target === overlay || e.target === content) closeLightbox();
         });
 
-        if (closeBtn) closeBtn.addEventListener('click', closeLightbox);
+        closeBtn?.addEventListener('click', closeLightbox);
 
         document.addEventListener('keydown', (e) => {
-            if (e.key === 'Escape' && overlay.classList.contains('active')) {
-                closeLightbox();
-            }
+            if (e.key === 'Escape' && overlay.classList.contains('active')) closeLightbox();
         });
     }
 
-    document.addEventListener('DOMContentLoaded', setupLightbox);
+    // Initialize on both DOMContentLoaded and on Astro page loads (if using view transitions)
+    setupLightbox();
+    document.addEventListener('astro:page-load', setupLightbox);
 </script>

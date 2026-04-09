@@ -1,22 +1,78 @@
 ---
 import Layout from '../layouts/Layout.astro';
+import MemberCard from '../components/MemberCard.astro';
 import '../styles/members.css';
-const baseUrl = "/ORC_WEBSITE_REAL";
+
+const rawBase = import.meta.env.BASE_URL; / / Dynamic base for routing
+
+const members = [
+    // Executive
+    {
+        name: "Tatum",
+        role: "Executive Board",
+        subteam: "Executive",
+        bio: "Strategic lead focusing on team growth and long-term project sustainability.",
+    },
+    {
+        name: "Jaeden",
+        role: "Executive Board",
+        subteam: "Executive",
+        bio: "Operational lead ensuring multi-disciplinary cooperation across all rover sub-teams.",
+    },
+    {
+        name: "Matthew",
+        role: "Executive Board",
+        subteam: "Executive",
+        bio: "Technical advisor overseeing architectural integrity and systems integration.",
+    },
+    // Functions
+    {
+        name: "Sarah Miller",
+        role: "Functions Lead",
+        subteam: "Functions",
+        bio: "Specializing in the mechanical design of the rover's primary functional arms and chassis.",
+    },
+    // Controls
+    {
+        name: "Alex Rivard",
+        role: "Controls Lead",
+        subteam: "Controls",
+        bio: "Developing the control theory and hardware interfaces for seamless rover piloting.",
+    },
+    // Programming
+    {
+        name: "Josh Chomiak",
+        role: "Programming Lead",
+        subteam: "Programming",
+        linkedin: "https://www.linkedin.com/in/joshchomiak/",
+        bio: "Architecting the software stack, from low-level drivers to high-level mission autonomous logic.",
+    },
+    // Administration
+    {
+        name: "Emily Watson",
+        role: "Admin Lead",
+        subteam: "Administration",
+        bio: "Managing outreach, sponsorship, and the organizational framework of the team.",
+    },
+];
+
+const categories = ["Executive", "Functions", "Controls", "Programming", "Administration"];
 ---
 
 <Layout>
     <div class="members-container">
-        <h1 class="members-title">Our Team Members</h1>
-        <p class="members-subtitle">The dedicated professionals behind Okanagan Rover Craft.</p>
+        <h1 class="members-title">Our Team</h1>
+        <p class="members-subtitle">Meet the innovators, engineers, and visionaries driving the future of planetary exploration.</p>
         
-        <div class="members-grid">
-            <!-- Members will be added here -->
-            <div class="member-card">
-                <div class="member-info">
-                   <h2 style="font-family: 'Monomaniac One', sans-serif;">Coming Soon</h2>
-                   <p>Project leads and team members will be updated shortly.</p>
+        {categories.map(category => (
+            <section class="members-section">
+                <h2 class="section-title">{category}</h2>
+                <div class="members-grid">
+                    {members.filter(m => m.subteam === category).map(member => (
+                        <MemberCard {...member} />
+                    ))}
                 </div>
-            </div>
-        </div>
+            </section>
+        ))}
     </div>
 </Layout>

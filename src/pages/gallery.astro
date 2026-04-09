@@ -1,0 +1,41 @@
+---
+import Layout from '../layouts/Layout.astro';
+import '../styles/gallery.css';
+
+const rawBase = import.meta.env.BASE_URL;
+const baseUrl = rawBase.endsWith('/') ? rawBase.slice(0, -1) : rawBase;
+
+const galleryItems = [
+    { src: `${baseUrl}/assets/images/ORC - Landscape Banner.webp`, alt: "ORC Landscape Banner", caption: "Our landscape flagship" },
+    { src: `${baseUrl}/assets/images/IMG_1259.webp`, alt: "Team Work", caption: "Innovation in progress" },
+    { src: `${baseUrl}/assets/images/IMG_1324.webp`, alt: "Group Photo", caption: "The 2026 Team" },
+    { src: `${baseUrl}/assets/images/group_photo.webp`, alt: "Competition Prep", caption: "Preparing for CIRC" },
+    { src: `${baseUrl}/assets/images/gear-logo.webp`, alt: "ORC Logo", caption: "Symbol of excellence" },
+    // Repeat some for better grid visualization since we have limited images
+    { src: `${baseUrl}/assets/images/IMG_1324.jpg`, alt: "Team Portrait", caption: "Collaborative growth" },
+    { src: `${baseUrl}/assets/images/IMG_1259.jpg`, alt: "Technical Focus", caption: "Engineering precision" },
+];
+---
+
+<Layout>
+    <div class="gallery-container">
+        <h1 class="gallery-title">Gallery</h1>
+        <p class="gallery-subtitle">A collection of moments from our journey to build the ultimate rover.</p>
+        
+        <div class="gallery-grid">
+            {galleryItems.map(item => (
+                <div class="gallery-item" data-src={item.src}>
+                    <img 
+                        src={item.src} 
+                        alt={item.alt} 
+                        loading="lazy" 
+                        class="gallery-img expandable-image"
+                    />
+                    <div class="gallery-overlay">
+                        <span class="gallery-caption">{item.caption}</span>
+                    </div>
+                </div>
+            ))}
+        </div>
+    </div>
+</Layout>

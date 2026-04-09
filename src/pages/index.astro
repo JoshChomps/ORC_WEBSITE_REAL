@@ -1,6 +1,7 @@
 ---
 import Layout from '../layouts/Layout.astro';
-const baseUrl = "/ORC_WEBSITE_REAL";
+const rawBase = import.meta.env.BASE_URL;
+const baseUrl = rawBase.endsWith('/') ? rawBase.slice(0, -1) : rawBase;
 ---
 
 <Layout>
@@ -38,6 +39,6 @@ const baseUrl = "/ORC_WEBSITE_REAL";
   const learnMoreBtn = document.getElementById('learn-more-btn');
 
   learnMoreBtn?.addEventListener('click', () => {
-      window.location.href = "/ORC_WEBSITE_REAL/about";
+      window.location.href = `${import.meta.env.BASE_URL}about/`;
   });
 </script>
